@@ -1,53 +1,76 @@
-<p class="text-center">Cadastro de Carro</p>
-<form  method="POST" class="form_control" action="{{ route('carro') }}">
+
+<form  method="POST" class="form_control" action="{{ route('admin.carro.cadastrar') }}">
+    <input type="hidden" name="id" value="{{ $carro->id ?? ''  }}">
     @csrf
     <div class="form-group row" >
         <div class="form-group ">
             <label for="">Model</label>
-            <input class="form-control" type="text" name="model">
+            <input class="form-control" type="text" name="model" value="{{ $carro->model ?? old('model') }}">
+            @if($errors->has('model'))        
+                {{ $errors->first('model') }}           
+            @endif
         </div>
         <div class="form-group ">
             <label for="">Marque</label>
-            <input class="form-control" type="text" name="marca">
+            <input class="form-control" type="text" name="marca" value="{{ $carro->marca ?? old('marca') }}">
+            @if($errors->has('marca'))        
+                {{ $errors->first('marca') }}           
+            @endif
         </div>
     </div>
     <div class="row">
         <div class="form-group ">
             <label for="">Quantidade Portas</label>
-            <input class="form-control" type="number" name="quantidade_portas">
+            <input class="form-control" type="number" name="quantidade_portas" value="{{ $carro->quantidade_portas ?? old('quantidade_portas') }}">
+            @if($errors->has('quantidade_portas'))        
+                {{ $errors->first('quantidade_portas') }}           
+            @endif
         </div>    
     
         <div class="form-group ">
-            <label for="">Ano Fabrocaçã</label>
-            <input class="form-control" type="number" name="ano_fabricacao" >
+            <label for="">Ano Fabricação</label>
+            <input class="form-control" type="number" name="ano_fabricacao" value="{{ $carro->ano_fabricacao ?? old('ano_fabricacao') }}">
+            @if($errors->has('ano_fabricacao'))        
+                {{ $errors->first('ano_fabricacao') }}           
+            @endif
         </div>
     </div>
     <div class="row">
     
         <div class="form-group ">
             <label for="">Tipo de cambio</label>
-            <select class="form-control" name="tipo_cambio" id="">
-                <option value="">Escolhe uma opção</option>
-                <option value="1"> Manual</option>
-                <option value="2">Automático</option>
-                <option value="3">Automatizado</option>
+            <select class="form-control" name="tipo_cambio_id" id="">
+                <option value="">Escolhe uma opção</option>                
+                @foreach(DB::table('tipo_cambios')->get() as $tipo)
+                        <option value="{{ $tipo->id }}" @if(!empty($carro) && $tipo->id == $carro->tipo_cambio_id) selected @endif
+                     > {{ $tipo->tipo_cambio }}</option>
+    
+                @endforeach                
             </select>
+            @if($errors->has('tipo_cambio'))        
+                {{ $errors->first('tipo_cambio') }}           
+            @endif
         </div>    
     
         <div class="form-group ">
             <label for="">Combustível</label>
-            <select class="form-control" name="combustivle" id="">
+            <select class="form-control" name="combustivel_id" id="">
                 <option value="">Escolhe uma opção</option>
-                <option value="1"> Flex</option>
-                <option value="2">Gasolina</option>
-                <option value="3">Álcool</option>
+                @foreach(DB::table('combustivels')->get() as $value)
+                    <option value="{{ $value->id }}" @if(!empty($carro) && $value->id == $carro->combustivel_id) selected @endif> {{ $value->combustivel }}</option>
+                @endforeach
+                
+
             </select>
+            @if($errors->has('combustivel'))        
+                {{ $errors->first('combustivel') }}           
+            @endif
         </div>
     </div>
 
     <div class="m-2 clearfix">
         <button type="button" class="btn btn-danger float-start"> Cancelar</button>
-        <button type="submit" class="btn btn-primary float-end"> Enviar</button>
+        <button type="submit" class="btn btn-primary float-end"> Salvar</button>
     </div>
 
 </form>

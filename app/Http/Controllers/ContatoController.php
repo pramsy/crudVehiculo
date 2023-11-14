@@ -12,20 +12,25 @@ class ContatoController extends Controller
     //
     public function getIndex(){
         $motivo_contato = MotivoContato::all();
-        return View('contato',
+        return View('site.contato',
             [
                 'motivo_contato'=>$motivo_contato
             ]);
     }
 
     public function enviarMensagem(Request $request){
-        $request->validate([
-            'nome'=> 'required |min:3| max:60',
-            'celular' => 'required',
-            'email' => 'email',
-            'motivo_contato' => 'required',
-            'mensagem' => 'required| max:1500',
-        ]);
+        $request->validate(
+            [
+                'nome'=> 'required |min:3| max:60',
+                'celular' => 'required',
+                'email' => 'email',
+                'motivo_contato' => 'required',
+                'mensagem' => 'required| max:1500',
+            ],
+            [
+                'required' => 'O campo :attribute deve ser preenchido'
+            ]
+        );
         Contato::create($request->all());
         return redirect()->route('/');
        
@@ -33,6 +38,6 @@ class ContatoController extends Controller
     }
     
     public function getEmail(){
-        return View('email');
+        return View('site.email');
     }
 }

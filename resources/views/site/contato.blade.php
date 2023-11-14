@@ -1,4 +1,7 @@
 @include('partial/header')
+    <div>
+        @include('partial/menutop')
+    </div>
    <div class="row p-3"style="background-color:#E3F2FD;">
         <p class="fw-bold text-center bd-blue-200" style="background-color:#90CAF9">Entrar em contato com agente</p>
         <div class="col-sm-6 p-1 m-1 ">

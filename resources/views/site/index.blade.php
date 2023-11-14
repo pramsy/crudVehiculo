@@ -1,4 +1,7 @@
 @include('partial/header')
+<div>
+    @include('partial/menutop')
+</div>
 <div id="carouselInicio" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#carouselInicio" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>

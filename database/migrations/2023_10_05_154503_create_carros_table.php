@@ -20,8 +20,8 @@ class CreateCarrosTable extends Migration
             $table->string('marca',100);
             $table->integer('quantidade_portas');
             $table->year('ano_fabricacao');
-            $table->integer('tipo_cambio');
-            $table->integer('combustival');
+            $table->unsignedBigInteger('tipo_cambio_id');
+            $table->unsignedBigInteger('combustivel_id');
         });
     }
 

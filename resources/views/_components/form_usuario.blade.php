@@ -1,5 +1,5 @@
 <p class="text-center">Formulario de Cadastro</p>
-<form  method="POST" class="form_control" action="{{ route('usuario') }}">
+<form  method="POST" class="form_control" action="{{ route('admin.usuario.cadastrar') }}">
     @csrf
     <div class="form-group row" >
         <div class="form-group col-sm-6">

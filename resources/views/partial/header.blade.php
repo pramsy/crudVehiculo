@@ -16,6 +16,3 @@
 
 </head>
 <body class="px-2">
-<div>
-    @include('partial/menutop')
-</div>

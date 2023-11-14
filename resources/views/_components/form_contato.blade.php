@@ -1,18 +1,34 @@
 {{ $slot }}
-<form method="POST" class="form_control" action="{{ route('contato') }}">
+<form method="POST" class="form_control" action="{{ route('site.contato') }}">
     @csrf
+    @if($errors->any())
+        <div style="color:red;" >
+            @foreach($errors->all() as $erro)
+                {{ $erro }} 
+            @endforeach
+        </div>
+    @endif
     <div>
         <div class="mb-3">
             <label for="nome" class="form-label">Nome</label>
-            <input type="text" value="{{ old('nome')}}" class="form-control" name="nome" placeholder="nome completo">
+            <input type="text" value="{{ old('nome')}}" class="form-control" name="nome" >
+            @if($errors->has('nome'))        
+                {{ $errors->first('nome') }}           
+            @endif
         </div>
         <div class="mb-3">
             <label for="celular" class="form-label">Celular</label>
-            <input type="text" value="{{ old('celular')}}" class="form-control" name="celular" placeholder="">
+            <input type="text" value="{{ old('celular')}}" class="form-control" name="celular" >
+            @if($errors->has('celular'))        
+                {{ $errors->first('celular') }}           
+            @endif
         </div>
         <div class="mb-3">
             <label for="email"class="form-label">Email</label>
-            <input type="email" value="{{ old('email')}}" class="form-control" name="email" placeholder="Email">
+            <input type="email" value="{{ old('email')}}" class="form-control" name="email" >
+            @if($errors->has('email'))        
+                {{ $errors->first('email') }}           
+            @endif
         </div>
         <div class="mb-3">
             <label for="" class="form-label">Motivo</label>
@@ -23,7 +39,9 @@
                 @endforeach
                
             </select>
-
+            @if($errors->has('motivo_contato'))        
+                {{ $errors->first('motivo_contato') }}           
+            @endif
         </div>
         
         <div class="mb-3">
@@ -33,6 +51,9 @@
                     {{ old('mensagem')}}
                 @endif
             </textarea>
+            @if($errors->has('mensagem'))        
+                {{ $errors->first('mensagem') }}           
+            @endif
         </div>
         <div class="m-2 clearfix">
             <button type="button" class="btn btn-danger float-start"> Cancelar</button>
@@ -42,9 +63,3 @@
     </div>
 
 </form>
-<div>
-    <pre>
-        {{ print_r($errors) }}
-    </pre>
-
-</div>
