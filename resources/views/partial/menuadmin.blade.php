@@ -16,28 +16,7 @@
           <a class="nav-link" href="{{ route('admin.carro') }}">Carro</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('admin.usuario') }}">Usuario</a>
-        </li>
-        
-        
-
-        <li class="nav-item dropdown ">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Cadastrar
-          </a>
-          <ul class="dropdown-menu " aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="{{ route('admin.usuario.cadastrar') }}"><i class="fa-regular fa-user"></i> Usuario</a></li>
-            <li><a class="dropdown-item" href="{{ route('admin.carro.cadastrar') }}"><i class="fa fa-car"></i> Carro</a></li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown ">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Listar
-          </a>
-          <ul class="dropdown-menu " aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="{{ route('admin.usuario.listar') }}"><i class="fa-regular fa-user"></i> Usuario</a></li>
-            <li><a class="dropdown-item" href="{{ route('admin.carro.listar') }}"><i class="fa fa-car"></i> Carro</a></li>
-          </ul>
+          <a class="nav-link" href="{{ route('user.index') }}">Usuario</a>
         </li>
         
       </ul>

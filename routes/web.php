@@ -32,13 +32,7 @@ Route::prefix('/admin')->middleware(AutentificacaoMiddleware::class)->group(func
     Route::get('/inicio', 'InicioController@index')->name('admin.inicio');
     Route::get('/sair', 'LoginController@sair')->name('admin.sair');
 
-    Route::prefix('/usuario')->group(function(){        
-        Route::get('/', 'UsuarioController@index')->name('admin.usuario');
-        Route::get('/cadastrar', 'UsuarioController@getCadastro')->name('admin.usuario.cadastrar');
-        Route::post('/cadastrar', 'UsuarioController@postCadastro')->name('admin.usuario.cadastrar');
-        Route::get('/listar', 'UsuarioController@getListar')->name('admin.usuario.listar');
-        Route::get('/search', 'UsuarioController@Pesquisar')->name('admin.usuario.search');
-    });
+    
 
     Route::prefix('/carro')->group(function(){
         Route::get('/', 'CarroController@index')->name('admin.carro');
@@ -46,8 +40,11 @@ Route::prefix('/admin')->middleware(AutentificacaoMiddleware::class)->group(func
         Route::post('/cadastrar', 'CarroController@postCadastro')->name('admin.carro.cadastrar');
         Route::get('/listar', 'CarroController@getListar')->name('admin.carro.listar');
         Route::get('/search', 'CarroController@Pesquisar')->name('admin.carro.search');
-        Route::get('/read/{id}', 'CarroController@Read')->name('admin.carro.read');
         Route::get('/editar/{id}', 'CarroController@Edit')->name('admin.carro.editar');
         Route::get('/delete/{id}', 'CarroController@Delete')->name('admin.carro.delete');
     });
+    
+    Route::get('/user/listar','AdministradorController@getListar')->name('user.listar');
+    Route::get('/user/search','AdministradorController@Pesquisar')->name('user.search');
+    Route::resource('user','AdministradorController');
 });

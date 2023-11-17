@@ -9,10 +9,10 @@ class UsuarioController extends Controller
 {
 
     public function index(){
-        return View('admin.usuario.index');
+        return View('admin.administrador.index');
     }
     public function getCadastro(){
-        return View('admin.usuario.cadastar');
+        return View('admin.administrador.cadastar');
     }
     public function postCadastro(Request $request){
         $user = new Administrador();

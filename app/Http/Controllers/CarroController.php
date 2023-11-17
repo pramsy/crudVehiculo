@@ -26,8 +26,8 @@ class CarroController extends Controller
         'marca'=>'required',
         'quantidade_portas'=>'required',
         'ano_fabricacao'=>'required',
-        'tipo_cambio_id'=>'required',
-            'combustivel_id'=>'required'
+        'tipo_cambio_id'=>'exists:tipo_cambios,id',
+        'combustivel_id'=>'exists:combustivels.id'
         ];
         $fedback = [
             
@@ -65,10 +65,6 @@ class CarroController extends Controller
            
         }
         return View('admin.carro.listar',['carros' => $carros, 'request'=>$request->all()]);
-    }
-    public function Read(Request $request){
-        echo 'Construção Read';
-
     }
     public function Edit($id){
         $carro = Carro::find($id);

@@ -20,19 +20,19 @@
     
         </div>
     </div>
-    <div class="d-flex justify-content-center" style="width:50%; margin-left:auto;margin-right:auto;">
+    <div class="justify-content-center" style="width:50%; margin-left:auto;margin-right:auto;">
         @if(!empty($carros) && $carros->count() > 0)
             <div>
             <table class="table table-responsive">
                 <thead>
                     <tr>
-                        <th class="test-center">Model</th>
-                        <th class="test-center">Marca</th>
-                        <th class="test-center">Ano Fabrocação</th>
-                        <th class="test-center">Qtd Portas</th>
-                        <th class="test-center">Combustivel</th>
-                        <th class="test-center">Cambio</th>
-                        <th class="test-center">Acôes</th>
+                        <th class="text-center">Model</th>
+                        <th class="text-center">Marca</th>
+                        <th class="text-center">Ano Fabrocação</th>
+                        <th class="text-center">Qtd Portas</th>
+                        <th class="text-center">Combustivel</th>
+                        <th class="text-center">Cambio</th>
+                        <th class="text-center">Acôes</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -45,7 +45,6 @@
                             <td>{{ $carro->combustivel()->first()->combustivel }}</td>
                             <td>{{ $carro->tipo_cambio()->first()->tipo_cambio }}</td>
                             <td>
-                                <a class="btn btn-light" href="{{ route('admin.carro.read', ['id' =>$carro->id]) }}" role="button"> <i class="fa-brands fa-readme"></i> </a>        
                                 <a class="btn btn-light" href="{{ route('admin.carro.editar', ['id' => $carro->id]) }}" role="button"> <i class="fa-solid fa-pen-to-square"></i> </a>        
                                 <a class="btn btn-light" href="{{ route('admin.carro.delete', ['id' => $carro->id]) }}" role="button"> <i class="fa-regular fa-trash-can"></i> </a>
                             </td>
@@ -54,14 +53,15 @@
                 </tbody>
             </table>
             </div>
-            
+            <div class="float-end">
+                <div class=""> {{ $carros->appends($request)->links() }}</div>
+                <div class=""> Pagina {{ $carros->count() }} de {{ $carros->total() }} De ({{$carros->firstItem() }} até {{$carros->lastItem() }})</div>
+            </div>
         @else
             <p>Nenhum caro registrado</p>
         @endif    
     </div>
     
 </div>
-<div class=""> {{ $carros->appends($request)->links() }}</div>
-<div class=""> Pagina {{ $carros->count() }} de {{ $carros->total() }} De ({{$carros->firstItem() }} até {{$carros->lastItem() }})</div>
 
 @include('partial/footer')
